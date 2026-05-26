@@ -131,9 +131,7 @@ life_philosophy: "Build • Break • Learn • Repeat"
 <img src="https://leetcard.jacoblin.cool/kishorekannann?theme=dark&font=JetBrains%20Mono&ext=heatmap" />
 </div>
 
-<div align="center">
-<img src="./tuf-stats.svg" alt="TUF Stats"/>
-</div>
+
 
 ---
 

@@ -1,0 +1,21 @@
+<svg width="380" height="140" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bg { fill: #1e293b; rx: 10; }
+    .title { font: bold 16px "Segoe UI", sans-serif; fill: #38bdf8; }
+    .label { font: 13px "Segoe UI", sans-serif; fill: #94a3b8; }
+    .val { font: bold 14px "Segoe UI", sans-serif; fill: #f1f5f9; }
+    .easy { fill: #22c55e; }
+    .med  { fill: #f59e0b; }
+    .hard { fill: #ef4444; }
+  </style>
+  <rect width="380" height="140" rx="10" class="bg"/>
+  <text x="20" y="30" class="title">TakeUForward (TUF) Stats</text>
+  <text x="20" y="60" class="label">Total Solved</text>
+  <text x="180" y="60" class="val">0</text>
+  <text x="20" y="85" class="label">Easy</text>
+  <text x="180" y="85" class="easy val">0</text>
+  <text x="20" y="108" class="label">Medium</text>
+  <text x="180" y="108" class="med val">0</text>
+  <text x="20" y="131" class="label">Hard</text>
+  <text x="180" y="131" class="hard val">0</text>
+</svg>

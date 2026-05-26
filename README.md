@@ -138,8 +138,12 @@ life_philosophy: "Build • Break • Learn • Repeat"
 ## 📊 GitHub Stats
 
 <div align="center">
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=kishorekannann&show_icons=true&theme=tokyonight&hide_border=true"/>
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=kishorekannann&layout=compact&theme=tokyonight&hide_border=true"/>
+<img height="170" src="https://github-readme-stats-fast.vercel.app/api?username=kishorekannann&show_icons=true&theme=tokyonight&hide_border=true"/>
+<img height="170" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=kishorekannann&layout=compact&theme=tokyonight&hide_border=true"/>
+</div>
+
+<div align="center">
+<img src="https://github-readme-streak-stats-eight.vercel.app?user=kishorekannann&theme=tokyonight&hide_border=true"/>
 </div>
 
 ---

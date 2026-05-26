@@ -1,0 +1,71 @@
+name: Update TUF Stats
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # runs every 6 hours
+  workflow_dispatch:
+
+jobs:
+  update-tuf-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fetch TUF Stats & Generate SVG
+        run: |
+          python3 << 'EOF'
+          import urllib.request
+          import json
+
+          username = "kishorekannann"
+          url = f"https://backend-go.takeuforward.org/api/v1/shared/profile/dsa-progress/{username}"
+          req = urllib.request.Request(url, headers={
+              "accept": "application/json",
+              "origin": "https://takeuforward.org",
+              "referer": "https://takeuforward.org/"
+          })
+
+          try:
+              with urllib.request.urlopen(req) as res:
+                  data = json.loads(res.read())["data"]["data"]
+                  easy   = data["solvedEasy"]
+                  medium = data["solvedMedium"]
+                  hard   = data["solvedHard"]
+                  total  = easy + medium + hard
+          except:
+              easy, medium, hard, total = 0, 0, 0, 0
+
+          svg = f'''<svg width="380" height="140" xmlns="http://www.w3.org/2000/svg">
+            <style>
+              .bg {{ fill: #1e293b; rx: 10; }}
+              .title {{ font: bold 16px "Segoe UI", sans-serif; fill: #38bdf8; }}
+              .label {{ font: 13px "Segoe UI", sans-serif; fill: #94a3b8; }}
+              .val {{ font: bold 14px "Segoe UI", sans-serif; fill: #f1f5f9; }}
+              .easy {{ fill: #22c55e; }}
+              .med  {{ fill: #f59e0b; }}
+              .hard {{ fill: #ef4444; }}
+            </style>
+            <rect width="380" height="140" rx="10" class="bg"/>
+            <text x="20" y="30" class="title">TakeUForward (TUF) Stats</text>
+            <text x="20" y="60" class="label">Total Solved</text>
+            <text x="180" y="60" class="val">{total}</text>
+            <text x="20" y="85" class="label">Easy</text>
+            <text x="180" y="85" class="easy val">{easy}</text>
+            <text x="20" y="108" class="label">Medium</text>
+            <text x="180" y="108" class="med val">{medium}</text>
+            <text x="20" y="131" class="label">Hard</text>
+            <text x="180" y="131" class="hard val">{hard}</text>
+          </svg>'''
+
+          with open("tuf-stats.svg", "w") as f:
+              f.write(svg)
+          print(f"Done: {total} solved")
+          EOF
+
+      - name: Commit SVG
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add tuf-stats.svg
+          git diff --cached --quiet || git commit -m "chore: update TUF stats"
+          git push
